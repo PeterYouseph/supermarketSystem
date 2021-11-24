@@ -1,13 +1,14 @@
 class Bebida extends Produto {
-  private String tipo; // Tipo da Bebida (Refrigerante, cerveja, água com gás, etc...)
+  private String sabor;
+  private static final String setor = "Bebidas";
 
-  Bebida(String tipo, String marca, double preco, int conteudo, String unidade){ // Construtor
-    super(marca, preco, conteudo, unidade);
-    this.tipo = tipo;
+  Bebida(String nome, String marca, String sabor, double preco, double conteudo, String unidade){ // Construtor
+    super(nome, marca, preco, conteudo, unidade);
+    this.sabor = sabor;
   }
 
-  public String getTipo(){
-    return tipo;
+  public String getSabor(){
+    return sabor;
   }
 
   public double descontoClienteVip(){ // Calcula o preco para o Cliente Vip
@@ -15,8 +16,6 @@ class Bebida extends Produto {
   }
 
   public void imprimeInfo(){
-    System.out.println(getTipo() + ' ' + getMarca() + ' ' + getConteudo() + ' ' + getUnid() +": "+ getQuant() + " unidade(s)");
+    System.out.println(getNome() + ' '+ getMarca() + " Sabor " + getSabor() +' ' + getConteudo() + ' ' + getUnid() + " (R$" + getPreco()+ ')' + ": "+ getQuant() + " unidade(s)");
   }
-
- 
 }

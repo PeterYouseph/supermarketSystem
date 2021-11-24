@@ -1,20 +1,44 @@
-abstract class Produto {
+abstract class Produto{
+  private String nome; // Nome do produto
   private String marca; // Marca do produto
   private double preco; // Preço do produto (em R$)
-  private int conteudo; // Conteudo do produto em sua unidade especifica
-  private int quantidade; // Quantidade disponivel desse produto no estoque
+  private double conteudo; // Conteudo do produto em sua unidade especifica
   private String unidade; // Em qual unidade de medida esta o produto (mL, L, kg, caixa)
-  private String sigla; // Sigla para referenciar aquele tipo de produto(Ex: Refrigerante == REF)
+  private int quantidade; // Quantidade disponivel desse produto no estoque
 
-  Produto(String marca, double preco, int conteudo, String unidade){ // Construtor
+  public int hashCode() { // Calcula o HashCode do produto
+    int hash = 1;
+    hash = hash * 17 + (int) conteudo;
+    hash = hash * 31 + marca.hashCode();
+    hash = hash * 13 + nome.hashCode();
+    return hash;
+  }
+
+  public boolean equals(Object obj) { //Regra de igualdade para dois produtos
+    Produto prod = (Produto) obj;
+    
+    if (prod.nome.equals(this.nome) && prod.marca.equals(this.marca) && prod.preco == this.preco && prod.conteudo == this.conteudo)
+      return true;
+         
+    else
+      return false;
+  }
+  
+
+  Produto(String nome, String marca, double preco, double conteudo, String unidade){ // Construtor
+    this.nome = nome;
     this.marca = marca;
     this.preco = preco;
     this.conteudo = conteudo;
     this.unidade = unidade;
   }
 
-  public void colocarNoEstoque(int num){
+  public void inserirNoEstoque(int num){
     quantidade += num;
+  }
+
+  public String getNome(){
+    return nome;
   }
 
   public String getMarca(){
@@ -29,7 +53,7 @@ abstract class Produto {
     return quantidade;
   }
 
-  public int getConteudo(){
+  public double getConteudo(){
     return conteudo;
   }
 
@@ -37,7 +61,6 @@ abstract class Produto {
     return unidade;
   }
 
-
-  public abstract double descontoClienteVip();
   public abstract void imprimeInfo();
+  public abstract double descontoClienteVip();
 }

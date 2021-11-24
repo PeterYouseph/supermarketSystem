@@ -10,7 +10,7 @@ class Funcionario extends Pessoa {
   public int getSalario(){
     return salario;
   }
-
+    
   public void imprimeInfos(){
     System.out.println("Nome do Funcionario: " + getNome() + "\n Salario: " + getSalario());
   }
